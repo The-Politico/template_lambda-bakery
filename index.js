@@ -1,14 +1,7 @@
-const sendRes = (status, body) => {
-  var response = {
-    statusCode: status,
-    headers: {
-      'Content-Type': 'text/html',
-    },
-    body: body,
-  };
-  return response;
-};
+'use strict';
 
-exports.handler = async(event, context) => {
-  return sendRes(200, 'Hello World!');
-};
+const awsServerlessExpress = require('aws-serverless-express');
+const app = require('./bakery/dist');
+
+const server = awsServerlessExpress.createServer(app);
+exports.handler = (event, context) => awsServerlessExpress.proxy(server, event, context);

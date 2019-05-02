@@ -32,6 +32,11 @@ module.exports = {
     name: 'aws_profile',
     message: 'Which AWS profile should we use?',
     default: 'interactives',
+  }, {
+    type: 'input',
+    name: 'prefix_path',
+    message: 'What\'s the publish path for your project?',
+    default: (answers) => `interactives/2019/${answers.project_slug}/`,
   }],
   'statics': {},
   'ignore': [
