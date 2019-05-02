@@ -24,10 +24,6 @@ export default async function(templateName, payload, filepath = '') {
   const renderer = require(`${paths.DIST_PATH}${templateName}/render.js`).default;
   const html = await renderer(payload.data);
 
-  console.log('render func ' + templateName, renderer);
-  console.log('payload', payload);
-  console.log('html', html);
-
   await writeFile(path.join(TMP, filepath, 'index.html'), html);
 
   if (staticPath) {
