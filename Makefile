@@ -1,3 +1,7 @@
+init:
+	terraform init \
+	./terraform
+
 build:
 	terraform apply \
 	-var-file="terraform/config/config.tfvars" \
