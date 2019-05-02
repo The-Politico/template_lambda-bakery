@@ -9,6 +9,6 @@ const sendRes = (status, body) => {
   return response;
 };
 
-exports.handler = async(event) => {
+exports.handler = async(event, context) => {
   return sendRes(200, 'Hello World!');
 };

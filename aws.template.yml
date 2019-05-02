@@ -22,7 +22,7 @@ Resources:
         - LambdaExecutionRole
         - Arn
       Events:
-        GetEvent:
+        PostEvent:
           Type: Api
           Properties:
             Path: /
