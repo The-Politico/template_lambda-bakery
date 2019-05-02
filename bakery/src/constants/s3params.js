@@ -3,5 +3,5 @@ export const ASSETS = {
 };
 
 export const DATA = {
-  CacheControl: 'max-age=300',
+  CacheControl: 'max-age=30',
 };

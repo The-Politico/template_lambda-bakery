@@ -1,11 +1,11 @@
-import { exportData, uploadData, sweepTmp, ensureTmp } from 'ServerUtils';
+import { exportData, uploadData, sweepTmp } from 'ServerUtils';
 
 export default async function(payload) {
-  await ensureTmp();
-
   await exportData(payload.data);
 
-  const url = await uploadData('');
+  const FILE_PATH_PREFIX = '';
+  const INVALIDATE = false;
+  const url = await uploadData(FILE_PATH_PREFIX, INVALIDATE);
 
   await sweepTmp();
 

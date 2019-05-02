@@ -17,6 +17,9 @@ Resources:
       Runtime: nodejs8.10
       Timeout: 10
       MemorySize: 256
+      Environment:
+        Variables:
+          lambda: true
       Role:
         Fn::GetAtt:
         - LambdaExecutionRole

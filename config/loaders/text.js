@@ -1,4 +1,4 @@
-module.exports = function (source) {
+module.exports = function(source) {
   const cleanText = source
     .replace(/^(?=\n)$|^\s*|\s*$|\n\n+/gm, '')
     .replace(/'/g, "\\'");

@@ -1,6 +1,11 @@
 /* DEVELOPMENT SERVER */
+const portfinder = require('portfinder');
 require('dotenv').config();
 
 const server = require('./src');
-const port = 3333;
-server.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+portfinder.basePort = 3333;
+
+portfinder.getPortPromise().then(port => {
+  server.listen(port, () => console.log(`Example app listening on port ${port}!`));
+});
