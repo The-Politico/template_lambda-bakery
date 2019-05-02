@@ -19,7 +19,7 @@ const getTemplate = templateName => {
 export default async function(templateName, payload, filepath = '') {
   let { staticPath } = getTemplate(templateName);
 
-  await ensureTmp();
+  await ensureTmp(filepath);
 
   const renderer = require(`${paths.DIST_PATH}${templateName}/render.js`).default;
   const html = await renderer(payload.data);
