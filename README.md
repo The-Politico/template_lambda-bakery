@@ -18,7 +18,7 @@ Using serverless architecture means page rebakes can scale to whatever size you 
 
 ### What's in it?
 
-The template includes an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) deployment package for creating a bakery microservice backed by AWS Lambda and API Gateway. It also includes [Terraform](https://www.terraform.io/) scripts to build a pipeline for continuous integration with a GitHub repository.
+The template includes an [AWS CloudFormation](https://aws.amazon.com/cloudformation/) template for creating a bakery microservice backed by AWS Lambda and API Gateway. It also includes [Terraform](https://www.terraform.io/) scripts to build a pipeline for continuous integration with a GitHub repository.
 
 The template contains boilerplate for both your Lambda bakery as well as the frontend assets of your page, meaning you can easily share the same project between developers and designers.
 
