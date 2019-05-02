@@ -3,26 +3,32 @@ import path from 'path';
 import { writeFile } from 'fs-extra';
 import find from 'lodash/find';
 import glob from 'glob';
-import { templates } from 'Config/constants';
-import { INVALID_CHAT_TYPE } from 'ServerConstants/errors';
+import { templates, paths } from 'Config/constants';
+import { INVALID_TEMPLATE_TYPE } from 'ServerConstants/errors';
 import { TMP } from 'ServerConstants/locations';
 import ensureTmp from 'ServerUtils/ensureTmp';
 
 const getTemplate = templateName => {
   const type = find(templates, { name: templateName }, null);
   if (type === null || type === undefined) {
-    throw new Error(INVALID_CHAT_TYPE(templateName));
+    throw new Error(INVALID_TEMPLATE_TYPE(templateName));
   }
   return type;
 };
 
-export default async function(templateName, payload) {
-  let { staticPath, renderer } = getTemplate(templateName);
+export default async function(templateName, payload, filepath = '') {
+  let { staticPath } = getTemplate(templateName);
 
   await ensureTmp();
 
+  const renderer = require(`${paths.DIST_PATH}${templateName}/render.js`).default;
   const html = await renderer(payload.data);
-  await writeFile(path.join(TMP, 'index.html'), html);
+
+  console.log('render func ' + templateName, renderer);
+  console.log('payload', payload);
+  console.log('html', html);
+
+  await writeFile(path.join(TMP, filepath, 'index.html'), html);
 
   if (staticPath) {
     glob.sync(`${staticPath}/**`).filter(fp => {
@@ -33,7 +39,7 @@ export default async function(templateName, payload) {
       );
     }).forEach(fp => {
       const filename = fp.split('/')[fp.split('/').length - 1];
-      cp.sync(fp, path.join(TMP, filename));
+      cp.sync(fp, path.join(TMP, filepath, filename));
     });
   }
 };

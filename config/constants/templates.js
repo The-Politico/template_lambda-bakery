@@ -1,37 +1,16 @@
 const path = require('path');
 const glob = require('glob');
 
-const srcPath = path.join(__dirname, '../../templates/src/');
-const distPath = path.join(__dirname, '../../templates/dist/');
+const { SRC_PATH, DIST_PATH } = require('./paths');
 
-module.exports = glob.sync(`${srcPath}/**/components/App.jsx`).map(fp => {
-  const name = fp.split(srcPath)[1].split('/components/App.jsx')[0];
-  const compSrcPath = fp.split('/components/App.jsx')[0];
-  const staticPath = path.join(distPath, name);
-
-  let renderer = () => '';
-  try {
-    renderer = require(`${distPath}${name}/render`).default;
-  } catch (e) {
-    if (!(e.code === 'MODULE_NOT_FOUND')) {
-      throw e;
-    }
-  }
-
-  let example = null;
-  try {
-    example = require(`${srcPath}/example`);
-  } catch (e) {
-    if (!(e.code === 'MODULE_NOT_FOUND')) {
-      throw e;
-    }
-  }
+module.exports = glob.sync(`${SRC_PATH}/**/renderer/index.js`).map(fp => {
+  const name = fp.split(SRC_PATH)[1].split('/renderer/index.js')[0];
+  const compSrcPath = fp.split('/renderer/index.js')[0];
+  const staticPath = path.join(DIST_PATH, name);
 
   return {
     name,
     staticPath,
-    renderer,
-    example,
     srcPath: compSrcPath,
   };
 });

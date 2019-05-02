@@ -3,9 +3,7 @@ import { TMP, S3_PATH_PREFIX } from 'ServerConstants/locations';
 import { DATA as DATA_S3_PARAMS } from 'ServerConstants/s3params';
 import { upload } from './s3';
 
-console.log(process.env.AWS_BUCKET_NAME);
-
-const uploadData = async function(fp = '', invalidate = false) {
+const uploadData = async function(invalidate = false, fp = '') {
   const key = path.join(S3_PATH_PREFIX, fp);
   await upload({
     file: path.join(TMP, 'data.json'),
