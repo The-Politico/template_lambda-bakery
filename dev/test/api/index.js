@@ -13,7 +13,6 @@ const TOKEN = 'Token TESTING';
 describe('tests baking', async function() {
   before(async function() {
     process.env.API_VERIFICATION_TOKEN = TOKEN;
-    process.env.TESTING = true;
     portfinder.basePort = 3333;
     port = await portfinder.getPortPromise().then(p => p);
     server = await expressServer.listen(port, () => console.log(`Bakery server listening on port ${port}!`));
