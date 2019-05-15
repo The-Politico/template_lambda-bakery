@@ -50,6 +50,6 @@ module.exports = {
   'rename': {
     'README.template.md': 'README.md',
     '.gitignore.template': '.gitignore',
-    '.env.template': '.env'
+    '.env.template': '.env',
   }
 }
