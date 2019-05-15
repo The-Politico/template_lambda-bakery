@@ -5,10 +5,9 @@ const mapValues = require('lodash/mapValues');
 const assign = require('lodash/assign');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
-const common = require('./webpack.templates.common.js');
-const constants = require('./constants');
-
-const templates = constants.templates;
+const common = require('./webpack.client.common.js');
+const templates = require('./constants').templates;
+const externals = require('./constants').externals;
 
 const entries = mapValues(
   mapKeys(
@@ -24,7 +23,7 @@ module.exports = {
   mode: 'production',
   entry: entries,
   output: {
-    path: path.resolve(__dirname, '../templates/dist/'),
+    path: path.resolve(__dirname, '../dist/client/'),
     filename: '[name].js',
     libraryTarget: 'umd',
   },
@@ -48,7 +47,10 @@ module.exports = {
               ],
               '@babel/preset-react',
             ],
-            plugins: ['@babel/proposal-class-properties'],
+            plugins: [
+              '@babel/proposal-class-properties',
+              '@babel/plugin-transform-modules-commonjs',
+            ],
           },
         },
       },
@@ -83,7 +85,7 @@ module.exports = {
   },
   externals: [
     nodeExternals({
-      whitelist: ['politico-style', /module-*/, 'lodash-es'],
+      whitelist: externals,
     }),
     {
       react: {

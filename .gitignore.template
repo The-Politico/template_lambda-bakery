@@ -1,6 +1,7 @@
 # Ignore terraform tmp files and secret files
 .terraform/
 *.secret
+.tmp/
 
 # Created by https://www.gitignore.io/api/node,macos,linux
 # Edit at https://www.gitignore.io/?templates=node,macos,linux

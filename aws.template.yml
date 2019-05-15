@@ -19,7 +19,7 @@ Resources:
       MemorySize: 256
       Environment:
         Variables:
-          lambda: true
+          LAMBDA: true
       Role:
         Fn::GetAtt:
         - LambdaExecutionRole
