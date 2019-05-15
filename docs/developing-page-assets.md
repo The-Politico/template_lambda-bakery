@@ -2,7 +2,17 @@
 
 # Developing page assets
 
-Develop client-side assets in the `client/` directory.
+Develop client-side assets in subdirectories of `client/`.
+
+### Development server
+
+Run:
+
+```
+$ yarn start
+```
+
+... then navigate to the page according to the name of your subfolder in `client/`, for example, `http://localhost:3000/home/`.
 
 ### Required entries
 
