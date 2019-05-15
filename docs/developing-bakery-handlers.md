@@ -47,27 +47,33 @@ As a general rule, you should use these utilities to bake static pages to your t
 
 **Your temporary directory should resemble the pathing you want in your bucket, relative to your project's `publishPath` set in `package.json`.** That allows us to sync your directory.
 
-##### exportData
+#### `exportData`
 
 Exports any serializable data to JSON in your temporary directory.
 
 ```javascript
+import { exportData } from 'Bakery/utils';
+
 // Serializes data and bakes to temp/path/to/data.json
 await exportData(someData, 'path/to/data.json');
 ```
 
-##### renderTemplate
+#### `renderTemplate`
 
 ```javascript
+import { renderTemplate } from 'Bakery/utils';
+
 // Renders and bakes client/myApp/index.js to temp/path/to/page/index.html
 await renderTemplate('myApp', somData, 'path/to/page');
 ```
 
-##### s3.syncDir
+#### `s3.syncDir`
 
 Once you've baked pages to your temporary directory, use this utility to sync files to your S3 bucket. Remember all paths are prefixed by the `publishPath` in your `package.json`.
 
 ```javascript
+import { s3 } from 'Bakery/utils';
+
 const pathPrefixes = {
   // The tmpPrefix is a path that determines what part of the
   // what part of temporary directory to sync, defaults to all.
@@ -88,10 +94,12 @@ By default, this does not delete stale files. *If you're confident you can sync 
 await s3.syncDir(pathPrefixes, customFileParams, true);
 ```
 
-##### sweepTmp
+#### `sweepTmp`
 
 Cleans up your temporary directory. Use this at the end of every handler to make sure your lambda instance doesn't retain or accidentally sync stale pages to S3.
 
 ```javascript
+import { sweepTmp } from 'Bakery/utils';
+
 await sweepTmp();
 ```
