@@ -5,5 +5,5 @@ require('dotenv').config({
 });
 
 require('@babel/register')({
-  extends: path.join(__dirname, 'bakery.babel.dev.js'),
+  extends: path.join(__dirname, 'mocha.babel.js'),
 });
