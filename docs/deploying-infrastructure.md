@@ -20,9 +20,10 @@ Make any necessary adjustments to the CloudFormation configuration in `aws.build
 
 ### Building your pipeline
 
-Once you're ready to build your pipeline, use the make command to trigger Terraform's build step.
+Once you're ready to build your pipeline, use the make commands to initialize and trigger Terraform's build step.
 
 ```
+$ make init
 $ make build
 ```
 
