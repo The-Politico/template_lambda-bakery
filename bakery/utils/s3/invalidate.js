@@ -11,7 +11,9 @@ export default (invalidateList) => new Promise((resolve, reject) => {
     return reject(new Error('No CloudFront distribution given.'));
   }
 
-  const cloudfront = new AWS.CloudFront();
+  const cloudfront = new AWS.CloudFront({
+    credentials: new AWS.Credentials(s3Creds.accessKeyId, s3Creds.secretAccessKey),
+  });
   cloudfront.createInvalidation({
     DistributionId: s3Creds.distribution,
     InvalidationBatch: {
