@@ -1,5 +1,6 @@
 module.exports = {
   'name': 'Lambda Bakery',
+  'version': "^1.0.0",
   'renderer': 'ejs',
   'category': null,
   'prompts': [{
