@@ -37,7 +37,7 @@ module.exports = {
     type: 'input',
     name: 'prefix_path',
     message: 'What\'s the publish path for your project?',
-    default: (answers) => `interactives/2020/${answers.project_slug}/`,
+    default: (answers) => `interactives/${new Date().getFullYear()}/${answers.project_slug}/`,
   }],
   'statics': {},
   'ignore': [
